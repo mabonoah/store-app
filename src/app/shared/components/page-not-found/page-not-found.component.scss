@@ -1,0 +1,19 @@
+@import '../../../../assets/style/mixins.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  #not-found-title {
+    font-size: 6rem;
+    margin-bottom: 3rem;
+  }
+
+  #not-found-info {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+}
