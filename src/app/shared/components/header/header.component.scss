@@ -1,0 +1,53 @@
+@import '../../../../assets/style/variables';
+@import '../../../../assets/style/mixins';
+
+:host {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    @include box-shadow(0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.08));
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 55%;
+
+        #app-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            color: $title-color;
+
+            h2 {
+                margin: 0 .5rem;
+            }
+        }
+
+        #logout-icon-container {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                color: $title-color;
+            }
+
+            span:first-child {
+                margin-inline-end: 0.5rem;
+            }
+        }
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+    :host header {
+        width: 100%;
+    }
+}

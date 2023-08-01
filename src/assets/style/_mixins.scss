@@ -16,3 +16,9 @@
   -ms-border-radius: $rSize;
   -o-border-radius: $rSize;
 }
+
+@mixin box-shadow ($value) {
+  -moz-box-shadow: $value;
+  -webkit-box-shadow: $value;
+  box-shadow: $value;
+}
