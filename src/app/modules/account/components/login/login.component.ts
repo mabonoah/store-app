@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from '../../types/user.type';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +14,12 @@ export class LoginComponent {
     'password': new FormControl('', Validators.required),
   });
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   onSubmit() {
     if (this.loginForm.invalid) return;
-    // TO DO
+    const user: User = this.loginForm.value;
+    this.auth.login(user);
   }
-  
+
 }
