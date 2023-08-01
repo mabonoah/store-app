@@ -1,0 +1,17 @@
+// Override snack bar style
+.success-snackbar div,
+.success-snackbar button {
+    color: #3C763D !important;
+    background-color: #DFF0D8 !important;
+}
+
+.failure-snackbar div,
+.failure-snackbar button {
+    color: #A94442 !important;
+    background: #F2DEDE !important;
+}
+
+.success-snackbar div,
+.failure-snackbar div {
+    font-weight: bold !important;
+}

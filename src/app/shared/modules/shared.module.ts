@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './angular-material.module';
 import { PageNotFoundComponent } from '../components/page-not-found/page-not-found.component';
+import { SnackBarService } from '../services/snack-bar.service';
 
 const modules = [CommonModule, FormsModule, ReactiveFormsModule, AngularMaterialModule];
 
@@ -13,6 +14,7 @@ const modules = [CommonModule, FormsModule, ReactiveFormsModule, AngularMaterial
     ],
     exports: [
         ...modules
-    ]
+    ],
+    providers: [SnackBarService]
 })
 export class SharedModule { }
