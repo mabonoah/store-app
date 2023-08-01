@@ -1,0 +1,1 @@
+export * from './categorized-products/categorized-products.component';
