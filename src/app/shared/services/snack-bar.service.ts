@@ -34,7 +34,7 @@ export class SnackBarService {
 
   private getConfig(type: SnackBarType): MatSnackBarConfig {
     return {
-      duration: 3000,
+      duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
       panelClass: [`${type}-snackbar`]
