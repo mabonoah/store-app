@@ -12,26 +12,37 @@ export class AuthService {
   constructor(private snackBar: SnackBarService, private router: Router) { }
 
   login(user: User): void {
-    if (user.username === Role.admin && user.password === Role.admin) this.onAdminLogin();
-    else if (user.username === Role.user && user.password === Role.user) this.onUserLogin();
+    if (user.username === Role.admin && user.password === Role.admin) {
+      this.setToken();
+      this.onAdminLogin();
+    }
+    else if (user.username === Role.user && user.password === Role.user) {
+      this.setToken();
+      this.onUserLogin();
+    }
     else this.onInvalidCredentials();
   }
 
-  private onAdminLogin() {
+  private setToken(): void {
+    const fakeToken: string = "eyJhbGciOiJIUzI1NiIsInR";
+    localStorage.setItem('token', fakeToken);
+  }
+
+  private onAdminLogin(): void {
     this.setRole(Role.admin);
     this.router.navigate(['/products']);
   }
 
-  private onUserLogin() {
+  private onUserLogin(): void {
     this.setRole(Role.user);
     this.router.navigate(['/categorized-products']);
   }
 
-  private onInvalidCredentials() {
+  private onInvalidCredentials(): void {
     this.snackBar.openFailureSnackBar('Invalid credentials', 'Login');
   }
 
-  private setRole(role: Role) {
+  private setRole(role: Role): void {
     localStorage.setItem('role', role);
   }
 
@@ -40,10 +51,15 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('role');
+    return !!this.getAuthorizationToken();
+  }
+
+  getAuthorizationToken(): string {
+    return localStorage.getItem('token') || '';
   }
 
   logout(): void {
+    localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.router.navigate(['/login']);
   }
