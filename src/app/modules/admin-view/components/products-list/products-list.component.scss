@@ -14,13 +14,16 @@
 }
 
 .mat-column-title,
-.mat-column-description  {
+.mat-column-description {
     flex: 0 0 20%;
 }
 
-.mat-column-id,
+.mat-column-id {
+    flex: 0 0 6%;
+}
+
 .mat-column-actions {
-    flex: 0 0 8%;
+    flex: 0 0 10%;
 }
 
 .mat-column-image {
