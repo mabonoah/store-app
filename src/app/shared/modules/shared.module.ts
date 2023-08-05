@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './angular-material.module';
 // Components
-import { HeaderComponent } from '../components';
+import { HeaderComponent, SpinnerComponent, ConfirmationDialogComponent } from '../components';
 // Services
 import { SnackBarService } from '../services/snack-bar.service';
 // Pipes
 import { TruncatePipe } from '../pipes/truncate.pipe';
+import { SpinnerService } from '../services/spinner.service';
 
-const components = [HeaderComponent];
+const components = [HeaderComponent, SpinnerComponent, ConfirmationDialogComponent];
 const pipes = [TruncatePipe]
 const modules = [CommonModule, FormsModule, ReactiveFormsModule, AngularMaterialModule];
 
@@ -23,6 +24,6 @@ const modules = [CommonModule, FormsModule, ReactiveFormsModule, AngularMaterial
         ...pipes,
         ...modules
     ],
-    providers: [SnackBarService]
+    providers: [SnackBarService, SpinnerService]
 })
 export class SharedModule { }
