@@ -54,7 +54,11 @@
         <mat-header-cell mat-header-cell *matHeaderCellDef> Rating </mat-header-cell>
         <mat-cell *matCellDef="let element">
             <span class="mobile-label">Rating</span>
-            {{element.rating.rate}} - {{element.rating.count}}
+            <span class="rate">
+                {{element.rating.rate}}
+                <span class="material-icons star-icon">star</span>
+            </span>
+            ({{element.rating.count}})
         </mat-cell>
     </ng-container>
 

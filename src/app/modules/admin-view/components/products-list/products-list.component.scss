@@ -1,4 +1,5 @@
 @import '../../../../../assets/style/variables';
+@import '../../../../../assets/style/mixins';
 
 .mat-mdc-table {
     width: 80%;
@@ -33,6 +34,20 @@
 .product-image {
     width: 2rem;
     height: 2rem;
+}
+
+.rate {
+    display: flex;
+    align-items: center;
+    padding: 0 0.3rem;
+    margin-inline-end: 0.2rem;
+    font-size: .9rem;
+    background-color: $star-icon-color;
+    @include border-radius(10rem);
+
+    .star-icon {
+        font-size: .9rem;
+    }
 }
 
 .actions-icons {
