@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from 'src/app/shared/modules/shared.module';
-import { ProductsListComponent } from './components';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { AdminViewRoutingModule } from './admin-view-routing.module';
-import { AdminViewComponent } from './pages/admin-view/admin-view.component';
+import { AdminViewComponent } from './pages';
+import { ProductsListComponent ,ProductFormComponent} from './components';
 
-const components = [ProductsListComponent];
+const components = [
+  AdminViewComponent,
+  ProductsListComponent,
+  ProductFormComponent
+];
 
 @NgModule({
   declarations: [
     ...components,
-    AdminViewComponent
   ],
   imports: [
     SharedModule,

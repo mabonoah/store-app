@@ -1,0 +1,9 @@
+<ng-template #starTemplate let-fill="fill">
+    <span class="material-icons star-icon">star
+        <span *ngIf="fill > 0" class="material-icons star-icon filled" [style.width.%]="fill">star</span>
+    </span>
+</ng-template>
+
+<ngb-rating [(rate)]="currentRate" [starTemplate]="starTemplate" [readonly]="true" [max]="5"
+    [ariaValueText]="ariaValueText">
+</ngb-rating>

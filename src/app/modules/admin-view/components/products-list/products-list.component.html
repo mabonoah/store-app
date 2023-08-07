@@ -1,5 +1,9 @@
 <spinner></spinner>
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8" [class.isMobile]="true">
+
+<span id="add-icon-container" matTooltip="Add new product" (click)="navigateToAdd()">
+    <mat-icon>add_box</mat-icon>
+</span>
+<mat-table [dataSource]=" dataSource" class="mat-elevation-z8" [class.isMobile]="true">
     <!-- Id Column -->
     <ng-container matColumnDef="id">
         <mat-header-cell mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
@@ -77,7 +81,7 @@
         <mat-cell *matCellDef="let element">
             <span class="mobile-label">Actions</span>
             <div class="actions-icons">
-                <span class="material-icons" matTooltip="Edit">mode_edit</span>
+                <span class="material-icons" matTooltip="Edit" (click)="navigateToEdit(element.id)">mode_edit</span>
                 <span class="material-icons" matTooltip="Delete" (click)="openDeleteDialog(element)">delete</span>
             </div>
         </mat-cell>
