@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../interfaces/product.interface';
 import { SnackBarService } from 'src/app/shared/services/snack-bar.service';
+import { ProductsDataService } from '../../services/products-data.service';
 
 @Component({
   selector: 'product-form',
@@ -20,7 +21,9 @@ export class ProductFormComponent {
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: SnackBarService,
-    private productsApiService: ProductsApiService) {
+    private productsApiService: ProductsApiService,
+    private productsData: ProductsDataService
+  ) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.title = this.id ? "Edit" : "Add";
   }
@@ -49,8 +52,11 @@ export class ProductFormComponent {
     const id: number = +this.id;
     this.productsApiService.getProduct(id)
       .subscribe((product: Product) => {
-        delete product.id;
-        this.productForm.setValue(product);
+        if (product) {
+          delete product.id;
+          this.productForm.setValue(product);
+        } else
+          this.snackBar.openFailureSnackBar('Product is not found');
       });
   }
 
@@ -68,7 +74,8 @@ export class ProductFormComponent {
     const product: Product = this.productForm.value;
     product.id = +this.id;
     this.productsApiService.updateProduct(product)
-      .subscribe((product: Product) => {
+      .subscribe(() => {
+        this.productsData.updateProduct(product);
         this.snackBar.openSuccessSnackBar(`${product.title} is updated successfully`, 'Product');
         this.navigateToList();
       });
@@ -77,7 +84,8 @@ export class ProductFormComponent {
   private create(): void {
     const product: Product = this.productForm.value;
     this.productsApiService.createProduct(product)
-      .subscribe((product: Product) => {
+      .subscribe(() => {
+        this.productsData.addProduct(product);
         this.snackBar.openSuccessSnackBar(`${product.title} is created successfully`, 'Product');
         this.navigateToList();
       });

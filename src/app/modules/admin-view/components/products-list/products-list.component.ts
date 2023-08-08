@@ -5,6 +5,7 @@ import { Product } from '../../interfaces/product.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { Router } from '@angular/router';
+import { ProductsDataService } from '../../services/products-data.service';
 
 @Component({
   selector: 'products-list',
@@ -19,7 +20,8 @@ export class ProductsListComponent {
     private productsApiService: ProductsApiService,
     private router: Router,
     private snackBar: SnackBarService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private productsData: ProductsDataService
   ) { }
 
   ngOnInit() {
@@ -27,8 +29,11 @@ export class ProductsListComponent {
   }
 
   private getAllProducts(): void {
-    this.productsApiService.getAllProducts()
+    if (this.productsData.products.length)
+      this.dataSource = this.productsData.products;
+    else this.productsApiService.getAllProducts()
       .subscribe((products: Product[]) => {
+        this.productsData.setProducts(products);
         this.dataSource = products;
       });
   }
@@ -51,16 +56,16 @@ export class ProductsListComponent {
     instance.title = "Delete product";
     instance.message = `Would you like to delete ${product.title}?`;
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-      if (!product.id) return;
-      if (confirmed) this.delete(product.id);
+      if (confirmed) this.delete(product);
     });
   }
 
-  delete(id: number) {
-    this.productsApiService.deleteProduct(id)
-      .subscribe((product: Product) => {
-          this.dataSource = this.dataSource.filter((product: Product) => product.id !== id);
-          this.snackBar.openSuccessSnackBar(`${product.title} is deleted successfully`);
-        });
+  delete(product: Product) {
+    if (!product.id) return;
+    this.productsApiService.deleteProduct(product.id)
+      .subscribe(() => {
+        this.dataSource = this.dataSource.filter((item: Product) => item.id !== product.id);
+        this.snackBar.openSuccessSnackBar(`${product.title} is deleted successfully`);
+      });
   }
 }
