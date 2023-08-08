@@ -1,0 +1,32 @@
+@import '../../../../../assets/style/variables';
+
+:host {
+    mat-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    mat-list-item {
+        cursor: pointer;
+        width: unset;
+        padding: 0 0.5rem 0.5rem;
+
+        ::ng-deep span {
+            font-size: 1rem;
+        }
+
+        &:hover {
+            ::ng-deep span {
+                color: $hover-color;
+            }
+        }
+    }
+}
+
+::ng-deep .selected {
+    span {
+        color: $selected-color !important;
+    }
+}

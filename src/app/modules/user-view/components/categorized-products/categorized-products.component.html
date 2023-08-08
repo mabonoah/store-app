@@ -1,1 +1,9 @@
-<p>categorized-products works!</p>
+<spinner></spinner>
+
+<!-- Categories -->
+<categories (onSelect)="getCategoryProducts($event)"></categories>
+
+<!-- Products -->
+<section id="products-section">
+    <product-card *ngFor="let product of products" [product]="product"></product-card>
+</section>

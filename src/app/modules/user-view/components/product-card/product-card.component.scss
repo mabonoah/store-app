@@ -1,0 +1,31 @@
+:host {
+    margin: 0 0.5rem 0.5rem;
+
+    .product-card {
+        max-width: 25rem;
+        margin-bottom: .8rem;
+
+        .rating-container {
+            display: flex;
+            align-items: center;
+
+            .rating-rate {
+                display: flex;
+                align-items: center;
+                margin-inline-end: 0.5rem;
+            }
+        }
+
+        .category {
+            display: inline-block;
+            margin-inline-end: 1.5rem;
+        }
+
+        .mat-mdc-card-content {
+            height: 10rem;
+            margin-top: 0.5rem;
+            overflow: auto;
+        }
+
+    }
+}

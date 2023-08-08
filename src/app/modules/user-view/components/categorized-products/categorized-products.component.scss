@@ -1,0 +1,13 @@
+:host{
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+
+    #products-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow: auto;
+    }
+}
+

@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { CategorizedProductsComponent } from './components';
 import { UserViewRoutingModule } from './user-view-routing.module';
 import { UserViewComponent } from './pages/user-view/user-view.component';
+import { CategorizedProductsComponent, CategoriesComponent, ProductCardComponent } from './components';
 
-const components = [CategorizedProductsComponent];
+const components = [UserViewComponent, CategorizedProductsComponent, CategoriesComponent, ProductCardComponent];
 
 @NgModule({
   declarations: [
-    ...components,
-    UserViewComponent
+    ...components
   ],
   imports: [
     SharedModule,
