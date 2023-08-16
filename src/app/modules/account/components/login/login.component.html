@@ -1,23 +1,45 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <h2 id="login-title">Login</h2>
+<section id="login-container">
+    <div id="login-sub-container">
+        <section class="login-section">
+            <h1>The best offer</h1>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Temporibus, expedita iusto veniam atque, magni tempora mollitia
+                dolorum consequatur nulla, neque debitis eos reprehenderit quasi
+                ab ipsum nisi dolorem modi. Quos?
+            </p>
+        </section>
 
-    <!-- Username -->
-    <mat-form-field>
-        <mat-label>Username</mat-label>
-        <input matInput placeholder="user or admin" formControlName="username">
-        <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
-            Required
-        </mat-error>
-    </mat-form-field>
+        <section class="login-section">
+            <div id="radius-shape-1"></div>
+            <div id="radius-shape-2"></div>
 
-    <!-- Password -->
-    <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input matInput placeholder="user or admin" formControlName="password" type="password">
-        <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
-            Required
-        </mat-error>
-    </mat-form-field>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <header id="login-title">
+                    <span class="material-icons">store</span>
+                    <h2>Login </h2>
+                </header>
 
-    <button mat-raised-button color="primary" type="submit" cdkFocusInitial>Submit</button>
-</form>
+                <!-- Username -->
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="user or admin" formControlName="username">
+                    <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+                        Required
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Password -->
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="user or admin" formControlName="password" type="password">
+                    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+                        Required
+                    </mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit" cdkFocusInitial>Submit</button>
+            </form>
+        </section>
+    </div>
+</section>

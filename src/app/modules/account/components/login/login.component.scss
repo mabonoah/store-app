@@ -6,36 +6,136 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+}
 
-    form {
-        width: 20rem;
-        height: 20rem;
+#login-container {
+    padding: 5rem;
+    width: 80%;
+    height: 80%;
+    overflow: hidden;
+    background-color: hsl(218, 41%, 15%);
+    background-image: radial-gradient(650px circle at 0% 0%,
+            hsl(218, 41%, 35%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(218, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%),
+        radial-gradient(1250px circle at 100% 100%,
+            hsl(218, 41%, 45%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(218, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%);
+}
+
+#login-sub-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.login-section {
+    width: 100%;
+
+    &:first-of-type {
+        z-index: 10;
+
+        h1 {
+            color: hsl(218, 81%, 95%);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        p {
+            color: hsl(218, 81%, 85%);
+        }
+    }
+
+    &:last-of-type {
+        position: relative;
+    }
+}
+
+#radius-shape-1 {
+    height: 12rem;
+    width: 12rem;
+    position: absolute;
+    top: -60px;
+    left: -130px;
+    @include border-radius(50%);
+    background: radial-gradient(#44006b, #ad1fff);
+    overflow: hidden;
+}
+
+#radius-shape-2 {
+    width: 18rem;
+    height: 18rem;
+    position: absolute;
+    bottom: -60px;
+    right: -110px;
+    @include border-radius(38% 62% 63% 37% / 70% 33% 67% 30%);
+    background: radial-gradient(#44006b, #ad1fff);
+    overflow: hidden;
+}
+
+#login-form-card {
+    background-color: hsla(0, 0%, 100%, 0.9);
+    backdrop-filter: saturate(200%) blur(25px);
+}
+
+form {
+    width: 100%;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include border-radius(10px);
+    background-color: hsla(0, 0%, 100%, 0.9);
+    backdrop-filter: saturate(200%) blur(25px);
+
+    #login-title {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        border: 2px solid $border-color;
-        @include border-radius(10px);
+        color: $title-color;
+        font-weight: bold;
 
-        #login-title {
-            color: $title-color;
-            font-weight: bold;
+        h2 {
+            margin-bottom: 0;
+            margin-inline-start: 0.5rem;
         }
+    }
 
-        mat-form-field {
-            width: 90%;
-            margin-bottom: 0.4rem;
+    mat-form-field {
+        width: 90%;
+        margin-bottom: 0.4rem;
 
-            &:last-of-type {
-                margin-bottom: 1rem;
-            }
+        &:last-of-type {
+            margin-bottom: 1rem;
         }
-
     }
 }
 
 // Override mat field background color
 ::ng-deep .mdc-text-field,
 ::ng-deep .mat-mdc-form-field-focus-overlay {
-    background-color: #ffffff !important;
+    background-color: transparent !important;
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+    #login-container {
+        height: 95%;
+        width: 95%;
+        padding: 2rem;
+    }
+
+    #login-sub-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
