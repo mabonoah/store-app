@@ -48,7 +48,7 @@ export class ProductsListComponent {
 
   openDeleteDialog(product: Product): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '30rem',
+      width: '38rem',
       enterAnimationDuration: '250ms',
       exitAnimationDuration: '150ms'
     });
