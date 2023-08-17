@@ -5,7 +5,7 @@
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
 
     <!-- Title -->
-    <mat-form-field>
+    <mat-form-field class="product-field">
         <mat-label>Title</mat-label>
         <input matInput placeholder="" formControlName="title">
         <mat-error *ngIf="getFormControl('title')?.hasError('required')">
@@ -14,25 +14,29 @@
     </mat-form-field>
 
     <!-- Price -->
-    <mat-form-field>
+    <mat-form-field class="product-field">
         <mat-label>Price</mat-label>
         <input matInput type="number" formControlName="price">
+        <span matTextPrefix>$&nbsp;</span>
         <mat-error *ngIf="getFormControl('price')?.hasError('required')">
             Required
         </mat-error>
     </mat-form-field>
 
     <!-- Image URL -->
-    <mat-form-field>
-        <mat-label>Image URL</mat-label>
-        <input matInput placeholder="https://fakestoreapi.com/img/71.jpg" formControlName="image">
-        <mat-error *ngIf="getFormControl('image')?.hasError('required')">
-            Required
-        </mat-error>
-    </mat-form-field>
+    <div class="product-field" id="image-field-container">
+        <mat-form-field>
+            <mat-label>Image URL</mat-label>
+            <input matInput placeholder="https://fakestoreapi.com/img/71.jpg" formControlName="image">
+            <mat-error *ngIf="getFormControl('image')?.hasError('required')">
+                Required
+            </mat-error>
+        </mat-form-field>
+        <img *ngIf="getFormControl('image')?.value" [src]="getFormControl('image')?.value" alt="Image">
+    </div>
 
     <!-- Category -->
-    <mat-form-field>
+    <mat-form-field class="product-field">
         <mat-label>Category</mat-label>
         <input matInput formControlName="category">
         <mat-error *ngIf="getFormControl('category')?.hasError('required')">
@@ -40,13 +44,21 @@
         </mat-error>
     </mat-form-field>
 
+    <!-- Description -->
+    <mat-form-field id="description-field">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+        <mat-error *ngIf="getFormControl('description')?.hasError('required')">
+            Required
+        </mat-error>
+    </mat-form-field>
+
     <!-- Rating -->
-    <div formGroupName="rating">
+    <div class="product-field" id="rating-field-container" formGroupName="rating">
+        <rating [currentRate]="getNestedFormControl('rating','rate')?.value"></rating>
         <!-- Rate -->
         <mat-form-field>
-            <mat-label>Rate
-                <rating [currentRate]="getNestedFormControl('rating','rate')?.value"></rating>
-            </mat-label>
+            <mat-label>Rate</mat-label>
             <input matInput type="number" formControlName="rate">
             <mat-error *ngIf="getNestedFormControl('rating','rate')?.hasError('required')">
                 Required
@@ -64,15 +76,6 @@
             </mat-error>
         </mat-form-field>
     </div>
-
-    <!-- Description -->
-    <mat-form-field>
-        <mat-label>Description</mat-label>
-        <textarea matInput formControlName="description"></textarea>
-        <mat-error *ngIf="getFormControl('description')?.hasError('required')">
-            Required
-        </mat-error>
-    </mat-form-field>
 
     <footer>
         <button mat-stroked-button color="warn" (click)="navigateToList()">Cancel</button>

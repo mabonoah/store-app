@@ -2,11 +2,11 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 70%;
     max-height: 85vh;
     margin: 0 auto;
 
-    .mat-mdc-form-field {
+    .product-field {
         width: 45%;
         margin-bottom: 0.8rem;
 
@@ -15,9 +15,44 @@
         }
     }
 
+    #image-field-container {
+        display: inline-flex;
+
+        .mat-mdc-form-field {
+            width: 100%;
+        }
+
+        img {
+            width: 3.5rem;
+            height: 3.5rem;
+            margin-inline-start: 1rem;
+        }
+    }
+
+    #description-field {
+        width: calc(90% + 2rem);
+    }
+
+    #rating-field-container {
+        display: inline-flex;
+        align-items: baseline;
+
+        .mat-mdc-form-field {
+            &:first-of-type {
+                width: 22rem;
+                margin: 0 .5rem;
+            }
+
+            &:last-of-type {
+                width: 100%;
+            }
+        }
+    }
+
     footer {
         display: flex;
         justify-content: flex-end;
+        width: 95%;
 
         button:first-child {
             margin-inline-end: 1rem;
@@ -32,7 +67,7 @@
 }
 
 ::ng-deep textarea {
-    min-height: 5rem !important;
+    min-height: 4rem !important;
 }
 
 // Small devices (landscape phones, less than 768px)
@@ -42,7 +77,7 @@
         width: 90%;
         overflow: auto;
 
-        .mat-mdc-form-field {
+        .product-field {
             width: 95%;
 
             &:nth-child(odd) {
