@@ -1,35 +1,33 @@
 <mat-card class="product-card">
     <mat-card-header>
         <mat-card-title-group>
-            <!-- Title -->
             <mat-card-title>
+                <!-- Product image -->
+                <img mat-card-sm-image [src]="product?.image">
+                <!-- Title -->
                 <span class="ellipsis" [matTooltip]=" product?.title || ''">
                     {{ product?.title| truncate}}
                 </span>
             </mat-card-title>
-            <mat-card-subtitle>
-                <!-- Rating -->
-                <section class="rating-container">
-                    <span class="rating-rate">
-                        <rating [currentRate]="product?.rating?.rate || 0"></rating>
-                        <span class="rating-rate-value"> {{product?.rating?.rate}}</span>
-                    </span>
-                    <span class="rating-count">
-                        ({{product?.rating?.count}})
-                    </span>
-                </section>
-                <!-- Price and Category -->
-                <section class="price-category-container">
-                    <span class="category">{{product?.category}}</span>
-                    <span class="price"> {{product?.price | currency}}</span>
-                </section>
-            </mat-card-subtitle>
-            <!-- Product image -->
-            <img mat-card-sm-image [src]="product?.image">
         </mat-card-title-group>
     </mat-card-header>
-    <!-- Description -->
     <mat-card-content>
-        <span class="description"> {{product?.description}}</span>
+        <!-- Description -->
+        <span class="description"
+            [matTooltip]="(product && product.description && product.description.length > 140)  ? product.description : ''">
+            {{product?.description | truncate : 140}}
+        </span>
+        <!-- Rating -->
+        <section class="rating-container">
+            <rating class="rating-rate" [currentRate]="product?.rating?.rate || 0"></rating>
+            <span class="rating-count">
+                {{product?.rating?.count}}
+            </span>
+        </section>
+        <!-- Price and Category -->
+        <section class="price-category-container">
+            <span class="price"> {{product?.price | currency}}</span>
+            <span class="category">{{product?.category}}</span>
+        </section>
     </mat-card-content>
 </mat-card>
